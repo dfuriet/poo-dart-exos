@@ -1,4 +1,19 @@
+import 'player.dart';
+import 'app.dart';
+
 class Bot {
-  int strength = 1;
-  int health = 100;
+  final int strength;
+  int health = 0;
+
+  Bot(this.strength);
+
+  void display() {
+    print("Bot : Force = ${this.strength}, Santé = ${this.health}%");
+  }
+
+  void attack(Player player) {
+    final deBot = lancerDes();
+    print("Bot : Dé = $deBot");
+    player.health -= deBot;
+  }
 }
