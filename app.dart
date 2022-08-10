@@ -13,16 +13,17 @@ void main() {
   do {
     i = 1;
     do {
-      readText(player.pseudo + " : Appuyer sur entrée pour un prochin tour");
       if (isMyTour) {
+        readText(player.pseudo + " : Appuyer sur entrée pour un prochin tour");
         player.attack(bot);
         bot.display();
+        i++;
       } else {
         bot.attack(player);
         player.display();
       }
       isMyTour = !isMyTour;
-      i++;
+      
     } while (bot.health >= 0 && player.isAlive);
 
     if (bot.health < 0) {

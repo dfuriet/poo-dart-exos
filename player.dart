@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'bot.dart';
 import 'app.dart';
 import 'weapon.dart';
