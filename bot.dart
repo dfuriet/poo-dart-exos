@@ -3,8 +3,8 @@ import 'player.dart';
 import 'app.dart';
 
 class Bot {
+  int _health = 100;
   final int _strength;
-  int _health = 0;
 
   int get strength => _strength;
 
@@ -14,6 +14,8 @@ class Bot {
   }
 
   Bot(this._strength);
+
+  bool get isAlive => health > 0;
 
   void display() {
     print("Bot : Force = ${this.strength}, Santé = ${this.health}%");

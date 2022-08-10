@@ -23,8 +23,10 @@ void main() {
         player.display();
       }
       isMyTour = !isMyTour;
-      
-    } while (bot.health >= 0 && player.isAlive);
+      print(
+          "===> Player ${player.health}%  : ${player.isAlive} - Bot ${bot.health}%  : ${bot.isAlive}  <===");
+    //} while (bot.isAlive && player.isAlive);
+    } while (player.health > 0 && bot.health > 0);
 
     if (bot.health < 0) {
       player.victory(bot, i);

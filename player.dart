@@ -9,8 +9,8 @@ class Player {
   final String pseudo;
   int _strength = 0;
   int _health = 0;
-  final WeaponListManager _weaponListManager = WeaponListManager();
-  Weapon _weapon; // = _weaponListManager.getNextWeaponToLoot;  
+  Weapon _weapon = const Weapon("Batte de baseball", 1, 100);
+  final _weaponListManager = WeaponListManager();
 
   int get strength => _strength;
   set strength(int strength) {
@@ -22,7 +22,11 @@ class Player {
     _health = max(0, health);
   }
 
-  Player(this.pseudo);
+  Player(this.pseudo) {
+    this._health = 100;
+    this.strength = 1;
+    this._weapon = _weaponListManager.getNextWeaponToLoot();
+  }
 
   bool get isAlive => health > 0;
 
@@ -42,7 +46,7 @@ class Player {
   }
 
   void victory(Bot bot, int i) {
-    const newWeapon = Weapon("Fusil à pompe", 2, 75);
+    final newWeapon = _weaponListManager.getNextWeaponToLoot();
     print(
         "Bravo ${this.pseudo}, vous avez gagné en $i coups. J'augmente votre force et vous avez un ${newWeapon.description} !");
     this.strength += 1;

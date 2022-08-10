@@ -11,7 +11,7 @@ class WeaponListManager {
   var _nextWeaponIndex = 0;
 
   Weapon getNextWeaponToLoot() {
-    Weapon nextWeapon;
+    Weapon nextWeapon = const Weapon("Batte de baseball", 1, 100);
     if (_nextWeaponIndex < _weaponList.length) {
       nextWeapon = _weaponList[_nextWeaponIndex];
       _nextWeaponIndex++;
