@@ -3,12 +3,24 @@ import 'dart:math';
 import 'bot.dart';
 import 'app.dart';
 import 'weapon.dart';
+import 'weapon_list_manager.dart';
 
 class Player {
   final String pseudo;
-  int strength = 0;
-  int health = 0;
-  Weapon _weapon = const Weapon("Batte de baseball", 1, 100);
+  int _strength = 0;
+  int _health = 0;
+  final WeaponListManager _weaponListManager = WeaponListManager();
+  Weapon _weapon; // = _weaponListManager.getNextWeaponToLoot;  
+
+  int get strength => _strength;
+  set strength(int strength) {
+    _strength = max(0, strength);
+  }
+
+  int get health => _health;
+  set health(int health) {
+    _health = max(0, health);
+  }
 
   Player(this.pseudo);
 
