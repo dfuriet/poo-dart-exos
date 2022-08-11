@@ -47,11 +47,16 @@ class Player {
 
   void victory(Bot bot, int i) {
     final newWeapon = _weaponListManager.getNextWeaponToLoot();
-    print(
-        "Bravo ${this.pseudo}, vous avez gagné en $i coups. J'augmente votre force et vous avez un ${newWeapon.description} !");
-    this.strength += 1;
-    this.health = 100;
-    bot.health = 100;
-    this.display();
+    if (newWeapon != null) {
+      print(
+          "Bravo ${this.pseudo}, vous avez gagné en $i coups. J'augmente votre force et vous avez un ${newWeapon.description} !");
+      this.strength += 1;
+      this.health = 100;
+      bot.health = 100;
+      this.display();
+    } else {
+      print(
+          "Bravo ${this.pseudo}, vous avez gagné en $i coups. J'ai plus d'arme");
+    }
   }
 }
