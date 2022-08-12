@@ -1,37 +1,24 @@
 import 'dart:math';
-
 import 'bot.dart';
 import 'app.dart';
+import 'fighter.dart';
 import 'weapon.dart';
 import 'weapon_list_manager.dart';
+import "dart:io";
 
-class Player {
+class Player extends Fighter {
   final String pseudo;
-  int _strength = 0;
-  int _health = 0;
   Weapon _weapon = const Weapon("Batte de baseball", 1, 100);
   final _weaponListManager = WeaponListManager();
 
-  int get strength => _strength;
-  set strength(int strength) {
-    _strength = max(0, strength);
-  }
-
-  int get health => _health;
-  set health(int health) {
-    _health = max(0, health);
-  }
-
-  Player(this.pseudo) {
-    this._health = 100;
-    this.strength = 1;
+  Player(this.pseudo) : super(100, 1) {
     this._weapon = _weaponListManager.getNextWeaponToLoot();
   }
 
-  bool get isAlive => health > 0;
-
+  @override
   void display() {
-    print(this.pseudo + " : force = ${this.strength}, Santé = ${this.health}%");
+    stdout.write(this.pseudo + " : ");
+    super.display();
   }
 
   void attack(Bot bot) {

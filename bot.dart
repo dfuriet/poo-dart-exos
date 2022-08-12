@@ -1,24 +1,16 @@
-import 'dart:math';
+
+import 'fighter.dart';
 import 'player.dart';
 import 'app.dart';
+import "dart:io";
 
-class Bot {
-  int _health = 100;
-  final int _strength;
+class Bot extends Fighter {
+  Bot(int strength) : super(100, strength);
 
-  int get strength => _strength;
-
-  int get health => _health;
-  set health(int health) {
-    _health = max(0, health);
-  }
-
-  Bot(this._strength);
-
-  bool get isAlive => health > 0;
-
+  @override
   void display() {
-    print("Bot : Force = ${this.strength}, Santé = ${this.health}%");
+    stdout.write("Bot : ");
+    super.display();
   }
 
   void attack(Player player) {
