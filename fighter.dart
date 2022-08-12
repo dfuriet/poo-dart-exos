@@ -1,6 +1,6 @@
 import 'dart:math';
 
-class Fighter {
+abstract class Fighter {
   int _strength = 0;
   int _health = 0;
 

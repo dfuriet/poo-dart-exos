@@ -6,10 +6,18 @@ import 'weapon.dart';
 import 'weapon_list_manager.dart';
 import "dart:io";
 
-class Player extends Fighter {
+class Player extends Fighter implements Comparable<Player> {
+  int _score = 0;
   final String pseudo;
   Weapon _weapon = const Weapon("Batte de baseball", 1, 100);
   final _weaponListManager = WeaponListManager();
+
+  int get score => _score;
+
+  get nickname => null;
+  set score(int score) {
+    _score = score;
+  }
 
   Player(this.pseudo) : super(100, 1) {
     this._weapon = _weaponListManager.getNextWeaponToLoot();
@@ -35,6 +43,7 @@ class Player extends Fighter {
   void victory(Bot bot, int i) {
     final newWeapon = _weaponListManager.getNextWeaponToLoot();
     if (newWeapon != null) {
+      _score += 1;
       print(
           "Bravo ${this.pseudo}, vous avez gagné en $i coups. J'augmente votre force et vous avez un ${newWeapon.description} !");
       this.strength += 1;
@@ -45,5 +54,10 @@ class Player extends Fighter {
       print(
           "Bravo ${this.pseudo}, vous avez gagné en $i coups. J'ai plus d'arme");
     }
+  }
+
+  @override
+  int compareTo(Player other) {
+    return this._score.compareTo(other._score);
   }
 }
